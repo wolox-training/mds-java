@@ -1,6 +1,14 @@
 package wolox.training.models;
 
-import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Book {
@@ -35,6 +43,9 @@ public class Book {
 
     @Column(nullable = false)
     private String isbn;
+
+    @ManyToMany(mappedBy = "books")
+    private Collection<User> users = new HashSet<>();
 
     /*
      * Deault constructor, required by JPA
@@ -127,4 +138,11 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Collection<User> getUsers() {
+        return Collections.unmodifiableCollection(users);
+    }
+
+    public void setUsers(Collection<User> users) {
+        this.users = users;
+    }
 }
