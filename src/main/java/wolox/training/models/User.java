@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class User {
+public class User implements BaseEntity<Long> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,7 +31,7 @@ public class User {
   @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
   private Collection<Book> books = new HashSet<>();
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
