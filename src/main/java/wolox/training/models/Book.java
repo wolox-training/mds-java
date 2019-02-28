@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Book {
+public class Book implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,7 +58,7 @@ public class Book {
      * Getters and setters
      */
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
