@@ -1,5 +1,6 @@
 package wolox.training.models;
 
+import com.google.common.base.Preconditions;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,8 +36,8 @@ public class User implements BaseEntity<Long> {
     return id;
   }
 
-  public void setId(long id) {
-    this.id = id;
+  public void setId(Long id) {
+    this.id = Preconditions.checkNotNull(id);
   }
 
   public String getUsername() {
@@ -44,6 +45,7 @@ public class User implements BaseEntity<Long> {
   }
 
   public void setUsername(String username) {
+    Preconditions.checkArgument(username != null && !username.isEmpty());
     this.username = username;
   }
 
@@ -52,6 +54,7 @@ public class User implements BaseEntity<Long> {
   }
 
   public void setName(String name) {
+    Preconditions.checkArgument(name != null && !name.isEmpty());
     this.name = name;
   }
 
@@ -60,7 +63,7 @@ public class User implements BaseEntity<Long> {
   }
 
   public void setBirthdate(LocalDate birthdate) {
-    this.birthdate = birthdate;
+    this.birthdate = Preconditions.checkNotNull(birthdate);
   }
 
   public Collection<Book> getBooks() {
@@ -68,14 +71,16 @@ public class User implements BaseEntity<Long> {
   }
 
   public void setBooks(Collection<Book> books) {
-    this.books = books;
+    this.books = Preconditions.checkNotNull(books);
   }
 
   public boolean addBook(Book book) {
+    Preconditions.checkNotNull(book);
     return books.add(book);
   }
 
   public boolean removeBook(Book book) {
+    Preconditions.checkNotNull(book);
     return books.remove(book);
   }
 }
