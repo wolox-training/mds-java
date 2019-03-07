@@ -44,8 +44,8 @@ public abstract class AbstractCrudController<T extends BaseEntity<X>, X> {
 
   @PutMapping("/{id}")
   public T update(@RequestBody T entity, @PathVariable X id) {
-    if (entity.getId() != id) {
-      return null;
+    if (!entity.getId().equals(id)) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ids don't match");
     }
     return getRepository().save(entity);
   }
