@@ -1,5 +1,6 @@
 package wolox.training.models;
 
+import com.google.common.base.Preconditions;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -62,8 +63,8 @@ public class Book implements BaseEntity<Long> {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(Long id) {
+        this.id = Preconditions.checkNotNull(id);
     }
 
     public String getTitle() {
@@ -71,6 +72,7 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setTitle(String title) {
+        Preconditions.checkArgument(title != null && !title.isEmpty());
         this.title = title;
     }
 
@@ -79,6 +81,7 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setAuthor(String author) {
+        Preconditions.checkArgument(author != null && !author.isEmpty());
         this.author = author;
     }
 
@@ -95,6 +98,7 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setImage(String image) {
+        Preconditions.checkArgument(image != null && !image.isEmpty());
         this.image = image;
     }
 
@@ -103,6 +107,7 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setSubtitle(String subtitle) {
+        Preconditions.checkArgument(subtitle != null && !subtitle.isEmpty());
         this.subtitle = subtitle;
     }
 
@@ -111,6 +116,7 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setPublisher(String publisher) {
+        Preconditions.checkArgument(publisher != null && !publisher.isEmpty());
         this.publisher = publisher;
     }
 
@@ -119,6 +125,7 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setYear(String year) {
+        Preconditions.checkArgument(year != null && !year.isEmpty());
         this.year = year;
     }
 
@@ -127,7 +134,7 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setPages(Integer pages) {
-        this.pages = pages;
+        this.pages = Preconditions.checkNotNull(pages);
     }
 
     public String getIsbn() {
@@ -135,6 +142,7 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setIsbn(String isbn) {
+        Preconditions.checkArgument(isbn != null && !isbn.isEmpty());
         this.isbn = isbn;
     }
 
@@ -143,6 +151,6 @@ public class Book implements BaseEntity<Long> {
     }
 
     public void setUsers(Collection<User> users) {
-        this.users = users;
+        this.users = Preconditions.checkNotNull(users);
     }
 }
